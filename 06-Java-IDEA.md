@@ -15,6 +15,9 @@ Java 開發遵循 project - module - package - class 項目結構開發，IDEA �
 - sout
   - 生成 System.out.println() 方法。
 
+- 陣列名.fori
+  - 快速生成該陣列的 for 迴圈遍歷。
+
 ### 快捷鍵
 
 - Ctrl + D
