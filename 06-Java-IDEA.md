@@ -24,3 +24,5 @@ Java 開發遵循 project - module - package - class 項目結構開發，IDEA �
   - 複製該行並插入一行並貼上。
 - Ctrl + alt + L
   - 格式化代碼。
+- Alt / mouse middle + mouse left 
+  - 批量修改代碼。 
