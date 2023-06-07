@@ -26,3 +26,9 @@ Java 開發遵循 project - module - package - class 項目結構開發，IDEA �
   - 格式化代碼。
 - Alt / mouse middle + mouse left 
   - 批量修改代碼。 
+- Alt + insert
+  - 快捷生成 (JavaBean)。
+- Ctrl + Alt + T
+  - 快捷生成 (語法結構)。
+- Ctrl + Alt + V
+  - 快捷生成變數。
