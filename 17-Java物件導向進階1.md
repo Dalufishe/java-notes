@@ -118,7 +118,7 @@ Student 類 繼承了 Person 類，Student 為子類，Person 為父類。
 - 非私有: 會繼承
 - 私有: 不會繼承
 
-(成員方法透過虛方法表繼承, 非 private, 非 static, 非 final)
+(成員方法透過虛方法表繼承, 非 private, 非 static)
 
 #### 繼承中的成員變數
 
