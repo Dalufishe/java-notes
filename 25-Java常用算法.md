@@ -78,7 +78,7 @@ public static int findIndex(int[] arr, int number) {
     int min = 0;
     int max = arr.length - 1;
     int mid;
- 
+
     while (true) {
         // no value
         if (min > max) {
@@ -117,7 +117,7 @@ mid = (min + max) / 2
 
 斷點使用的的是值在陣列中較可能出現的位置 (偏移 + 占比)，盡可能靠近要查找的數據，不再是中間索引:
 
-mid = min + key-arr[min] / arr[max] - arr[min] * (max - min)
+mid = min + key-arr[min] / arr[max] - arr[min] \* (max - min)
 
 此為二分查找的改良版，叫做`插值查找`，在處裡較為`分布的數據`時，效能會比二分查找高。
 
@@ -214,11 +214,11 @@ public static void sort(int[] arr){
 
 #### 插入排序
 
-插入排序，其核心為將0索引的元素到n索引的元素看作是有序的，把n+1索引的元素到最後一位元素看作是無序的。遍歷無序數據，將遍歷到的元素一個個插入到有序序列的適當位置。
+插入排序，其核心為將 0 索引的元素到 n 索引的元素看作是有序的，把 n+1 索引的元素到最後一位元素看作是無序的。遍歷無序數據，將遍歷到的元素一個個插入到有序序列的適當位置。
 
 ```java
 public static void sort(int[] arr) {
-        
+
     int startIndex = -1;
     // 找到無序數據起始索引
     for (int i = 0; i < arr.length - 1; i++) {
@@ -227,7 +227,7 @@ public static void sort(int[] arr) {
             break;
         }
     }
-    
+
     // 遍歷無序數據
     for (int i = startIndex; i < arr.length; i++) {
         int j = i;
@@ -271,4 +271,47 @@ public static int getFactorial(int n) {
 
 #### 快速排序
 
-快速排序，其核心為將設置基準點，並將其放回其歸屬的位置。透過
+快速排序，其核心為將排序範圍中的第一個數字設為基準數，再定義兩個變數 start 和 end，end 從後往前找比基準數小，start 從前往後找比基準數大，找到後交換 start 和 end，並循環此過程，直到 start 和 end 處於同一個位置，該位置是基準數中在陣列中應存入的位置，在讓基準數歸位。反覆此動作，直到所有數據完成排序。
+
+```java
+private static void _sort(int[] arr, int i, int j) {
+
+    int start = i;
+    int end = j;
+
+    if (start > end) {
+        return;
+    }
+
+    int base = arr[i];
+
+    while (start != end) {
+        while (true) {
+            if (start == end || arr[end] < base) {
+                break;
+            }
+            end--;
+        }
+while (true) {
+    if (start == end || arr[start] > base) {
+        break;
+    }
+    start++;
+}
+int temp = arr[start];
+arr[start] = arr[end];
+arr[end] = temp;
+}
+
+int temp = arr[i];
+arr[i] = arr[start];
+arr[start] = temp;
+
+_sort(arr, i, start - 1);
+_sort(arr, start + 1, j);
+}
+
+public static void sort(int[] arr) {
+    _sort(arr, 0, arr.length - 1);
+}
+```
