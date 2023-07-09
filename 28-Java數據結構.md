@@ -94,7 +94,7 @@ LinkedList 是 List 系列的資料型態，底層使用 鍊表 (雙向) 資料�
 
 #### HashSet
 
-HashSet 是 Set 系列 (無序，無索引，不可重複) 的資料型態，底層使用哈希表 (雜湊表) ，其為陣列 + 鍊表 + 紅黑樹實作。其特點為曾刪改查性能都優秀。
+HashSet 是 Set 系列 (不可重複) 的資料型態，其無序，無索引，底層使用哈希表 (雜湊表) ，其為陣列 + 鍊表 + 紅黑樹實作。其特點為曾刪改查性能都優秀。
 
 哈希表是透過哈希值 (HashCode) 控制數據的存儲位置。哈希值，為一物件所對應到的一整數 (int) 的名稱。HashSet 默認使用 Object.hashCode() 獲取元素哈希值，可透過重寫元素資料型態的 hashCode() 方法修改哈希值規則。
 
@@ -109,7 +109,25 @@ Set 系列資料型態設計來解決的問題為"數據不重複"，使用哈�
 
 #### LinkedHashSet
 
-LinkedHashSet 是 Set 系列 的資料型態中的特例，其是有序，無索引，不可重複的。底層除了使用哈希表 (雜湊表)，還使用了雙向鏈表紀錄存入順序。
+LinkedHashSet 是 Set 系列 (不可重複) 的資料型態，其有序，無索引。底層除了使用哈希表 (雜湊表)，還使用了雙向鏈表紀錄存入順序。
 
 相比 HashSet 效能較低，但內容是有序的。
 
+#### TreeSet
+
+TreeSet 是 Set 系列 (不可重複) 的資料型態，其無序，無索引。然而，它是可排序的。默認情況僅能存儲可排序物件 (如 String, Iterger)。
+
+可排序物件: 該類為 Comparable 接口實現類。
+第二種方式是透過傳入 Comparator 排序器進行排序。
+
+#### HashMap
+
+HashMap 和 HashSet 大致相同，只是其為雙列集合的實現。
+
+#### LinkedHashMap
+
+LinkedHashMap 和 LinkedHashSet 大致相同，只是其為雙列集合的實現。
+
+#### TreeMap
+
+TreeMap 和 TreeSet 大致相同，只是其為雙列集合的實現。

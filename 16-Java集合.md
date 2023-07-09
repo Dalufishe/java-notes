@@ -58,7 +58,7 @@ Java 中，集合主要可分為兩部分，單列集合 (Collection) 及雙列�
 單列集合一次操作一個數據。
 雙列集合一次操作一對數據。
 
-#### Collection
+### Collection
 
 單列集合體系的頂層為 `Collection`。其體系表如下:
 
@@ -185,25 +185,11 @@ List，列表，其添加的元素是有序，可重複，有索引。
 
 另外還有 for 搭配索引 及 列表迭代器 兩種方式。
 
-##### 方法一: 使用迭代器
-
-List 同樣支持迭代器。
-
-##### 方法二: 增強 for 遍歷
-
-List 同樣支持增強 for 遍歷。
-
-注意: 增強 for 遍歷最初設計來簡化迭代器，但其簡便的語法讓其也被有索引之集合被廣泛使用。
-
-##### 方法三: forEach() 方法
-
-注意: forEach() 方法最初也設計來簡化迭代器，但其簡便的語法 (lambda) 讓他被有索引之集合廣泛使用。
-
-##### 方法四: for 搭配索引
+##### 特殊方法一: for 搭配索引
 
 最原始操作有索引集合的方式。
 
-##### 方法五: 列表迭代器
+##### 特殊方法二: 列表迭代器
 
 對列表支持度較高的迭代器，增添了些方法。
 
@@ -250,6 +236,89 @@ while (listIterator.hasNext()){
 
 Set，狹義集合，其添加的元素是不重複的。
 
-
 List: 有序，有索引，可重複
 Set: 不可重複
+
+### Map
+
+雙列集合一次操作一對數據，稱鍵值對。鍵是不可重複的，值是可重複的。
+鍵和對是一一對應的，每個鍵只能找到自己對應的值。
+鍵值對在 Java 中是透過 Entry 物件存儲的，又稱鍵值對物件。
+
+雙列集合體系的頂層為 `Map`。其體系表如下:
+
+- Map
+  - HashMap (接口)
+    - LinkedHashMap (實現類)
+  - TreeMap (實現類)
+
+#### 常用方法
+
+- put(K key, V value)
+- remove(Object key)
+- clear()
+- containsKey(Object key)
+- containsValue(Object value)
+- isEmpty()
+- size()
+
+注意: put() 方法除了可以添加，也有覆蓋效果。
+
+#### 雙列集合之遍歷
+
+方法一: 鍵找值
+
+雙列集合並不支援迭代器，但可以透過 keySet() 方法獲取鍵集合，並操作單列集合 (如使用迭代器) 操作鍵，獲取值。
+
+```java
+Map<String, String> map = new HashMap<>();
+
+map.put("Dalufishe", "FrontEnd");
+map.put("dfgh012316 ", "BackEnd");
+map.put("CatBoxy", "FrontEnd");
+
+Set<String> keys = map.keySet();
+
+for (String key : keys) {
+    String s = map.get(key);
+    System.out.println(s);
+}
+
+```
+
+方法二: 鍵值對
+
+雙列集合並不支援迭代器，但可以透過 entrySet() 方法獲取鍵值對集合，並操作單列集合 (如使用迭代器) 操作鍵值對，獲取鍵或值。
+
+```java
+Map<String, Integer> map = new HashMap<>();
+map.put("Eason", 17);
+map.put("Chad", 18);
+map.put("Yang", 17);
+
+Set<Map.Entry<String, Integer>> entries = map.entrySet();
+
+for (Map.Entry<String, Integer> entry : entries) {
+    System.out.println(entry.getValue());
+}
+```
+
+方法三: forEach
+
+forEach 底層是鍵值對，為Java 設計來簡化 Map 遍歷的方式
+
+### Collections
+
+`java.util.Collections` 是集合的工具類。
+
+#### 常用方法
+
+- addAll(Collection<T> c, T... elements): 為單列集合批量添加元素。
+- shuffle(List<?> list): 打亂 List 集合元素的順序。
+- sort(List<T> list)
+- sort(List<T> list, Comparator<T> c)
+- binarySearch(List<T> list)
+- copy(List<T> dest, List<T> src)
+- fill(List<T> list, T obj)
+- max/min(Collection<T> coll)
+- swap(List<?> list, int i, int j)
