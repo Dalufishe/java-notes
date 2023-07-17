@@ -55,8 +55,8 @@ fos.close();
 #### 換行
 
 windows: \r\n
-linux:   \n
-macOS:   \r
+linux: \n
+macOS: \r
 
 注意: Java 底層會根據作業系統自動進行補全，因此跨平台仍可以正常運作，寫錯也不要緊。
 
@@ -180,11 +180,6 @@ jdk9 後: 配 AutoCloseable 省略 finally 代碼，並更簡化。
 
 ### 亂碼處理
 
-為甚麼會造成亂碼 ? 
-
-1. 未讀完整個文字 (文字可能使用 3 位元組存儲，但只讀取一位元組)
-2. 編解碼格式不統一。
-
 #### 字符集
 
 ##### ASCII 字符集
@@ -202,3 +197,31 @@ Unicode 字符集收錄了幾乎所有國家的所有語言文字，使用多種
 - string.getBytes(String charsetName): 使用指定方式編碼。
 - new String(byte[] bytes): 默認解碼。
 - new String(byte[] bytes, String charsetName): 使用指定方式解碼。
+
+#### 為甚麼會造成亂碼 ?
+
+1. 未讀完整個文字 (文字可能使用 3 位元組存儲，但只讀取一位元組)。
+2. 編解碼格式不統一。
+
+解決方式:
+
+1. 未讀完整個文字:
+   1. 使用 new String(byte[] bytes) 將完整的字節陣列進行解碼。
+   2. 使用字符流。
+2. 編解碼格式不統一:
+   1. 妥善配置編輯器，jvm，編譯器編碼格式。
+
+### FileReader (讀取檔案)
+
+FileReader 不同於 FileInputStream，讀到的數據是解碼過後的字符集編碼(或字符, 使用 buffer)，而非單純的位元組 (字節)。FileReader 會讀取完整的文字，因次可以解決某種程度上的亂碼問題。
+
+### FileWriter (寫入檔案)
+
+FileWriter 不同於 FileOuputStream，寫入的數據會經過編碼，而非單純的位元組 (字節)。
+
+### 字符流 vs 字節流
+
+- 字符流相較字節流更加頂層。
+- 字符流會做解編碼的操作。
+- 字符流自帶 8192 bytes 的小型緩衝區。
+- 字節流可以操作任意文件，字符流只能操作純文本。
