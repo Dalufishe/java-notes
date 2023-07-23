@@ -1,12 +1,12 @@
-select
-    ename,
-    job,
-    sal as oldsal
-(
-case job
-when 'MANAGER' then sal * 1.1
-when 'SALESMAN' then sal * 1.5
-else sal
-end
-) as newsal
-from emp;
+select 
+    job, avg(sal)
+from 
+    emp
+where 
+    job <> 'MANAGER'
+group by
+    job
+having
+    avg(sal) > 1500
+order by 
+    avg(sal) desc
